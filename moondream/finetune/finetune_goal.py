@@ -16,7 +16,7 @@ from ..torch.moondream import MoondreamModel, MoondreamConfig, text_encoder
 from ..torch.text import _produce_hidden, _lm_head, TextConfig
 
 # Configuration
-MODEL_PATH = ""  # Path to your Moondream model weights
+MODEL_PATH = "/content/moondream/models/model.safetensors"  # Path to your Moondream model weights
 ANSWER_EOS = "<|endoftext|>"
 LR = 3e-6
 EPOCHS = 5
