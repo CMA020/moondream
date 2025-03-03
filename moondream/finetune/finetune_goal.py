@@ -9,7 +9,7 @@ import random
 
 from tqdm import tqdm
 from bitsandbytes.optim import AdamW8bit
-import wandb
+# import wandb
 
 from ..torch.weights import load_weights_into_model
 from ..torch.moondream import MoondreamModel, MoondreamConfig, text_encoder
@@ -53,7 +53,7 @@ def text_loss(
 
 
 class GoalDetectionDataset(Dataset):
-    def __init__(self, yes_folder, no_folder, split="train", train_ratio=0.8):
+    def __init__(self, yes_folder, no_folder, split="train", train_ratio=0.9):
         """
         Dataset for fine-tuning Moondream to detect if a ball is in the goal
         
@@ -119,14 +119,14 @@ def main():
         torch.set_default_device("mps")
 
     # Initialize wandb for experiment tracking
-    wandb.init(
-        project="moondream-goal-detection",
-        config={
-            "EPOCHS": EPOCHS,
-            "GRAD_ACCUM_STEPS": GRAD_ACCUM_STEPS,
-            "LR": LR,
-        },
-    )
+    # wandb.init(
+    #     project="moondream-goal-detection",
+    #     config={
+    #         "EPOCHS": EPOCHS,
+    #         "GRAD_ACCUM_STEPS": GRAD_ACCUM_STEPS,
+    #         "LR": LR,
+    #     },
+    # )
 
     # Load model and configuration
     config = MoondreamConfig()
@@ -144,8 +144,8 @@ def main():
     )
 
     # Replace with your folder paths
-    yes_folder = "/path/to/yes_images"  
-    no_folder = "/path/to/no_images"
+    yes_folder = "/content/classifier_data/goal_crop_refined3"  
+    no_folder = "/content/classifier_data/nogoal_crop_refined3"
     
     # Create datasets
     train_dataset = GoalDetectionDataset(yes_folder, no_folder, split="train")
@@ -227,15 +227,15 @@ def main():
                 pbar.update(1)
                 
                 # Log to wandb
-                wandb.log({
-                    "loss/train": loss.item(), 
-                    "lr": optimizer.param_groups[0]["lr"]
-                })
+                # wandb.log({
+                #     "loss/train": loss.item(), 
+                #     "lr": optimizer.param_groups[0]["lr"]
+                # })
         
         # Calculate and log epoch average loss
         avg_epoch_loss = sum(epoch_losses) / len(epoch_losses)
         print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.4f}")
-        wandb.log({"loss/epoch": avg_epoch_loss})
+        # wandb.log({"loss/epoch": avg_epoch_loss})
         
         # Validation after each epoch
         if len(val_dataset) > 0:
@@ -283,11 +283,11 @@ def main():
             
             # Calculate and log validation metrics
             avg_val_loss = sum(val_losses) / len(val_losses)
-            wandb.log({"loss/val": avg_val_loss})
+            # wandb.log({"loss/val": avg_val_loss})
             print(f"Epoch {epoch+1}/{EPOCHS}, Validation Loss: {avg_val_loss:.4f}")
             
     # Finish logging
-    wandb.finish()
+    # wandb.finish()
     
     # Save the fine-tuned model
     save_file(
