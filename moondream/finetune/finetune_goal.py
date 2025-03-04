@@ -19,9 +19,9 @@ from ..torch.text import _produce_hidden, _lm_head, TextConfig
 MODEL_PATH = "/content/moondream/models/model.safetensors"  # Path to your Moondream model weights
 ANSWER_EOS = "<|endoftext|>"
 LR = 3e-6
-EPOCHS = 5
+EPOCHS = 3
 # GRAD_ACCUM_STEPS = 128
-GRAD_ACCUM_STEPS = 4
+GRAD_ACCUM_STEPS = 64
 
 
 def lr_schedule(step, max_steps):
@@ -53,7 +53,7 @@ def text_loss(
 
 
 class GoalDetectionDataset(Dataset):
-    def __init__(self, yes_folder, no_folder, split="train", train_ratio=0.9):
+    def __init__(self, yes_folder, no_folder, split="train", train_ratio=0.98):
         """
         Dataset for fine-tuning Moondream to detect if a ball is in the goal
         
@@ -115,8 +115,9 @@ def main():
     # Set device
     if torch.cuda.is_available():
         torch.set_default_device("cuda")
-    elif torch.backends.mps.is_available():
-        torch.set_default_device("mps")
+        print(torch.device("cuda" if torch.cuda.is_available() else "cpu"), "deviiiiiiiiiiice")
+    # elif torch.backends.mps.is_available():
+    #     torch.set_default_device("mps")
 
     # Initialize wandb for experiment tracking
     # wandb.init(
