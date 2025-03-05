@@ -19,9 +19,9 @@ from ..torch.text import _produce_hidden, _lm_head, TextConfig
 MODEL_PATH = "/content/moondream/models/model.safetensors"  # Path to your Moondream model weights
 ANSWER_EOS = "<|endoftext|>"
 LR = 3e-6
-EPOCHS = 5
+EPOCHS = 3
 # GRAD_ACCUM_STEPS = 128
-GRAD_ACCUM_STEPS = 64
+GRAD_ACCUM_STEPS = 80
 
 
 def lr_schedule(step, max_steps):
