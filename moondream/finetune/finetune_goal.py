@@ -21,7 +21,7 @@ ANSWER_EOS = "<|endoftext|>"
 LR = 3e-6
 EPOCHS = 3
 # GRAD_ACCUM_STEPS = 128
-GRAD_ACCUM_STEPS = 80
+GRAD_ACCUM_STEPS = 128
 
 
 def lr_schedule(step, max_steps):
