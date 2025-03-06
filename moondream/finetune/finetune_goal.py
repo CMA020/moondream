@@ -16,12 +16,12 @@ from ..torch.moondream import MoondreamModel, MoondreamConfig, text_encoder
 from ..torch.text import _produce_hidden, _lm_head, TextConfig
 
 # Configuration
-MODEL_PATH = "/content/moondream/models/model.safetensors"  # Path to your Moondream model weights
+MODEL_PATH = "/content/drive/MyDrive/moon_weigths/moondream_goal_detection.safetensors"  # Path to your Moondream model weights
 ANSWER_EOS = "<|endoftext|>"
 LR = 3e-6
-EPOCHS = 3
+EPOCHS = 5
 # GRAD_ACCUM_STEPS = 128
-GRAD_ACCUM_STEPS = 128
+GRAD_ACCUM_STEPS = 256
 
 
 def lr_schedule(step, max_steps):
@@ -293,7 +293,7 @@ def main():
     # Save the fine-tuned model
     save_file(
         model.state_dict(),
-        "/content/drive/MyDrive/moon_weigths/moondream_goal_detection.safetensors",
+        "/content/drive/MyDrive/moon_weigths/moondream_goal_detection.safetensors_e8",
     )
 
 
