@@ -293,7 +293,7 @@ def main():
     # Save the fine-tuned model
     save_file(
         model.state_dict(),
-        "/content/drive/MyDrive/moon_weigths/moondream_goal_detection.safetensors_e9",
+        "/content/drive/MyDrive/moon_weigths/moondream_goal_detection_e9.safetensors",
     )
 
 

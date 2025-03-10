@@ -19,11 +19,12 @@ if __name__ == "__main__":
     parser.add_argument("--sampler", "-s", type=str, default="greedy")
     parser.add_argument("--benchmark", "-b", action="store_true")
     args = parser.parse_args()
-
-    if torch.cuda.is_available():
-        torch.set_default_device("cuda")
-    elif torch.backends.mps.is_available():
-        torch.set_default_device("mps")
+    
+    torch.set_default_device("cpu")
+    # if torch.cuda.is_available():
+    #     torch.set_default_device("cuda")
+    # elif torch.backends.mps.is_available():
+    #     torch.set_default_device("mps")
 
     # Load config.
 
