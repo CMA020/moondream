@@ -11,7 +11,7 @@ from pathlib import Path
 
 # Add the directory containing the custom Moondream module to the path
 # Assuming the custom Moondream module is in a directory accessible from your project
-sys.path.append("/content/moondream")  # Adjust this path as needed
+  # Adjust this path as needed
 
 # Import custom Moondream components
 from moondream.moondream import MoondreamModel, MoondreamConfig
