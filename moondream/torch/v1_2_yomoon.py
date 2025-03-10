@@ -45,7 +45,7 @@ def setup_moondream():
 moondream_model = setup_moondream()
 
 # Global variables
-vid = cv2.VideoCapture("/content/capture/fcb.mp4")
+vid = cv2.VideoCapture("/content/capture/manc.mp4")
 goal_counter = 0
 frame_counter = 0
 rows, cols = 0, 0
