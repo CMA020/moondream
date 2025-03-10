@@ -14,8 +14,8 @@ from pathlib import Path
   # Adjust this path as needed
 
 # Import custom Moondream components
-from moondream.moondream import MoondreamModel, MoondreamConfig
-from moondream.weights import load_weights_into_model
+from .moondream import MoondreamModel, MoondreamConfig
+from .weights import load_weights_into_model
 
 # YOLO model setup
 model = YOLO(os.path.expanduser("/content/capture/last_p2s_12_7.pt"))
