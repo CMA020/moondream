@@ -56,7 +56,7 @@ last_person_coords = None
 frame_stack = deque(maxlen=150)
 
 # Prediction window for tracking last 20 predictions
-prediction_window = deque(maxlen=10)
+prediction_window = deque(maxlen=20)
 
 # Video saving setup
 fourcc = cv2.VideoWriter_fourcc(*"XVID")
@@ -141,7 +141,7 @@ def process_with_custom_moondream(img, coords):
     if len(prediction_window) == 10:
         goal_count = sum(1 for pred in prediction_window if pred == 0)
         print(goal_count, "goal couuuuuunt")
-        if goal_count >= 6 :
+        if goal_count >= 11 :
             goal_counter += 1
             output_directory = "/content/capture/goal_preds"
             os.makedirs(output_directory, exist_ok=True)
@@ -178,7 +178,7 @@ if __name__ == '__main__':
             frame_stack.append(img)
             frame_counter += 1
             
-            if frame_counter % 6 == 0:  # Process every 6th frame
+            if frame_counter % 3 == 0:  # Process every 6th frame
                 prediction = predict(img)
                 if prediction == 0:  # If model predicts goal with sufficient confidence
                     save_pending = True
