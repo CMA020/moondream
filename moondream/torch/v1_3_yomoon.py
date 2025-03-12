@@ -138,17 +138,17 @@ def process_with_custom_moondream(img, coords):
     #print(len)
     # Check if we have enough predictions and if at least 14 are goals
     should_save_video = False
-    if len(prediction_window) == 10:
-        goal_count = sum(1 for pred in prediction_window if pred == 0)
-        print(goal_count, "goal couuuuuunt")
-        if goal_count >= 11 :
-            goal_counter += 1
-            output_directory = "/content/capture/goal_preds"
-            os.makedirs(output_directory, exist_ok=True)
-            output_filename = f"goal_{goal_counter}.jpg"
-            output_path = os.path.join(output_directory, output_filename)
-            cv2.imwrite(output_path, img)
-            should_save_video = True  # Only set to True if we have enough goal predictions
+    #if len(prediction_window) == 10:
+    goal_count = sum(1 for pred in prediction_window if pred == 0)
+    print(goal_count, "goal couuuuuunt")
+    if goal_count >= 11 :
+        goal_counter += 1
+        output_directory = "/content/capture/goal_preds"
+        os.makedirs(output_directory, exist_ok=True)
+        output_filename = f"goal_{goal_counter}.jpg"
+        output_path = os.path.join(output_directory, output_filename)
+        cv2.imwrite(output_path, img)
+        should_save_video = True  # Only set to True if we have enough goal predictions
     
     return 0 if should_save_video else 1  
 
