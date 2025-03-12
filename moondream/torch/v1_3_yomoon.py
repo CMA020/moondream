@@ -45,7 +45,7 @@ def setup_moondream():
 moondream_model = setup_moondream()
 
 # Global variables
-vid = cv2.VideoCapture("/content/capture/liv.mp4")
+vid = cv2.VideoCapture("/content/capture/manc.mp4")
 goal_counter = 0
 frame_counter = 0
 rows, cols = 0, 0
@@ -203,3 +203,6 @@ if __name__ == '__main__':
         print(f"Average FPS: {fps:.2f}")
         vid.release()
         cv2.destroyAllWindows()
+
+
+        #10 pred window frames /6 and gc > 6   : ideal 
