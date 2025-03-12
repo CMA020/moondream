@@ -56,7 +56,7 @@ last_person_coords = None
 frame_stack = deque(maxlen=150)
 
 # Prediction window for tracking last 20 predictions
-prediction_window = deque(maxlen=20)
+prediction_window = deque(maxlen=10)
 
 # Video saving setup
 fourcc = cv2.VideoWriter_fourcc(*"XVID")
@@ -135,7 +135,7 @@ def process_with_custom_moondream(img, coords):
     
     # Add prediction to window
     prediction_window.append(predicted_class)
-    
+    #print(len)
     # Check if we have enough predictions and if at least 14 are goals
     should_save_video = False
     if len(prediction_window) == 10:
