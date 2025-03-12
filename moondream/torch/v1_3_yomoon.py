@@ -141,7 +141,7 @@ def process_with_custom_moondream(img, coords):
     if len(prediction_window) == 10:
         goal_count = sum(1 for pred in prediction_window if pred == 0)
         print(goal_count, "goal couuuuuunt")
-        if goal_count >= 8 :
+        if goal_count >= 5 :
             goal_counter += 1
             output_directory = "/content/capture/goal_preds"
             os.makedirs(output_directory, exist_ok=True)
