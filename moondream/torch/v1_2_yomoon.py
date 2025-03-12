@@ -36,7 +36,7 @@ def setup_moondream():
     moondream_model = MoondreamModel(config)
     
     # Load custom weights
-    weights_path = "/content/drive/MyDrive/moon_weigths/moondream_goal_detection_e9.safetensors"
+    weights_path = "/content/drive/MyDrive/moon_weigths/moondream_goal_detection_e12.safetensors"
     load_weights_into_model(weights_path, moondream_model)
     
     return moondream_model
@@ -142,7 +142,7 @@ def process_with_custom_moondream(img, coords):
     if len(prediction_window) == 20:
         goal_count = sum(1 for pred in prediction_window if pred == 0)
         print(goal_count, "goal couuuuuunt")
-        if goal_count >= 6:
+        if goal_count >= 14:
             goal_counter += 1
             output_directory = "/content/capture/goal_preds"
             os.makedirs(output_directory, exist_ok=True)
